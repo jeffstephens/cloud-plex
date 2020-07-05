@@ -4,6 +4,11 @@ variable "do_token" {
 variable "cloud_plex_ssh_key" {
   type = string
 }
+variable "server_size" {
+  type = string
+  # CPU-optimized $80/mo
+  default = "c-4"
+}
 
 provider "digitalocean" {
   token = var.do_token
@@ -13,7 +18,7 @@ resource "digitalocean_droplet" "plex_server" {
   image  = "ubuntu-18-04-x64"
   name = "plex-server"
   region = "sfo2"
-  size = "c-4" // CPU-optimized $80/mo
+  size = var.server_size
   user_data = file("./data/provision.sh")
 
   # see README for instructions

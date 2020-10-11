@@ -1,4 +1,4 @@
-# plex-cloud
+# cloud-plex
 
 Terraform configuration to set up a Plex server in the cloud that can support multiple concurrent streaming sessions.
 Follow the configuration steps, then run `terraform apply`.

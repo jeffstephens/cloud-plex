@@ -42,3 +42,9 @@ ssh root@<new server IP> -L 8888:localhost:32400
 
 Open [http://localhost:8888/web](http://localhost:8888/web) in a web browser and follow the setup steps. After
 connecting to your Plex account, you can close the tunnel and use Plex as you normally do.
+
+### Updating Plex
+
+If the server is out of date, follow [these instructions](https://brianli.com/how-to-update-plex-media-server-on-ubuntu/) to install the latest
+version of Plex via SSH.
+

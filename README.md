@@ -17,18 +17,16 @@ it to your environment:
 export TF_VAR_do_token=<DO API token>
 ```
 
-### SSH Key ID
+### SSH Key
 
-If you already have an SSH key in DigitalOcean, you can find its ID by running this command:
-
-```bash
-curl -X GET -H "Content-Type: application/json" -H "Authorization: Bearer $TF_VAR_do_token" "https://api.digitalocean.com/v2/account/keys" | jq
-```
-
-Find the numeric ID of the one you want to use on the new server, then add it to your environment:
+First, make sure you have an [SSH Key in DigitalOcean](https://cloud.digitalocean.com/account/security). Then, pass its name to the Terraform module:
 
 ```bash
-export TF_VAR_cloud_plex_ssh_key=<SSH Key ID>
+# CLI option
+terraform apply -var="cloud_plex_ssh_key_name=<SSH key name>"
+
+# ENV option
+export TF_VAR_cloud_plex_ssh_key_name=<SSH key name>
 ```
 
 ## Plex Setup
@@ -47,4 +45,3 @@ connecting to your Plex account, you can close the tunnel and use Plex as you no
 
 If the server is out of date, follow [these instructions](https://brianli.com/how-to-update-plex-media-server-on-ubuntu/) to install the latest
 version of Plex via SSH.
-

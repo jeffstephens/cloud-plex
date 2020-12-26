@@ -21,10 +21,10 @@ data "digitalocean_ssh_key" "server_key" {
 }
 
 resource "digitalocean_droplet" "plex_server" {
-  image  = "ubuntu-18-04-x64"
-  name = "plex-server"
-  region = "sfo2"
-  size = var.server_size
+  image     = "ubuntu-18-04-x64"
+  name      = "plex-server"
+  region    = "sfo2"
+  size      = var.server_size
   user_data = file("./data/provision.sh")
 
   # see README for instructions

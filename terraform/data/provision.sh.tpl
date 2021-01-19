@@ -5,6 +5,8 @@ configure_transmission() {
 
   # give things a second to come up and stabilize
   sleep 30
+  mkdir /transmission-autoload
+  chmod -R 777 /transmission-autoload
 
   # transmission-daemon writes the config file when it starts AND stops, so stop it before making changes
   service transmission-daemon stop
@@ -14,6 +16,9 @@ configure_transmission() {
     | jq '."download-dir" = "/plex-media/movies"' \
     | jq '."rpc-whitelist" = "127.0.0.1,${home_ip}"' \
     | jq '."rpc-password" = "${rpc_password}"' \
+    | jq '."watch-dir-enabled" = "true"' \
+    | jq '."watch-dir" = "/transmission-autoload"' \
+    | jq '."encryption" = "2"' \
     > /tmp/new-config.json
   mv /tmp/new-config.json $transmissionConfig
 
@@ -41,7 +46,7 @@ curl -sSL https://repos.insights.digitalocean.com/install.sh | sudo bash
 
 # set up media directories
 mkdir /plex-media /plex-media/movies /plex-media/tv /plex-media/music
-chmod -R 666 /plex-media
+chmod -R 777 /plex-media
 
 # wait, then configure transmission
 configure_transmission &

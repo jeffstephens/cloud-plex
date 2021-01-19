@@ -41,6 +41,7 @@ curl -sSL https://repos.insights.digitalocean.com/install.sh | sudo bash
 
 # set up media directories
 mkdir /plex-media /plex-media/movies /plex-media/tv /plex-media/music
+chmod -R 666 /plex-media
 
 # wait, then configure transmission
 configure_transmission &

@@ -41,7 +41,7 @@ data "template_file" "init" {
 resource "digitalocean_droplet" "plex_server" {
   image     = "ubuntu-18-04-x64"
   name      = "plex-server"
-  region    = "sfo2"
+  region    = "sfo3"
   size      = var.server_size
   user_data = data.template_file.init.rendered
 

@@ -37,7 +37,7 @@ sudo apt-get -y install \
 
 # install Plex server
 # get the latest url here: https://www.plex.tv/media-server-downloads/
-plexUrl="https://downloads.plex.tv/plex-media-server-new/1.23.0.4459-20536d6fc/debian/plexmediaserver_1.23.0.4459-20536d6fc_amd64.deb"
+plexUrl="https://downloads.plex.tv/plex-media-server-new/1.25.1.5286-34f965be8/debian/plexmediaserver_1.25.1.5286-34f965be8_amd64.deb"
 wget -O plex.deb "$plexUrl"
 sudo dpkg -i plex.deb
 

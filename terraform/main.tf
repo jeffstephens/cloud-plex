@@ -29,21 +29,15 @@ data "http" "myip" {
   url = "http://ipv4.icanhazip.com"
 }
 
-data "template_file" "init" {
-  template = file("./data/provision.sh.tpl")
-
-  vars = {
-    home_ip = chomp(data.http.myip.body)
-    rpc_password = chomp(var.transmission_password)
-  }
-}
-
 resource "digitalocean_droplet" "plex_server" {
-  image     = "ubuntu-18-04-x64"
-  name      = "plex-server"
-  region    = "sfo3"
-  size      = var.server_size
-  user_data = data.template_file.init.rendered
+  image  = "ubuntu-18-04-x64"
+  name   = "plex-server"
+  region = "sfo3"
+  size   = var.server_size
+  user_data = templatefile("./data/provision.sh.tpl", {
+    home_ip      = chomp(data.http.myip.body)
+    rpc_password = chomp(var.transmission_password)
+  })
 
   # see README for instructions
   ssh_keys = [data.digitalocean_ssh_key.server_key.id]
